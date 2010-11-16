@@ -23,7 +23,7 @@
 	<mvc:resources mapping="/resources/**" location="/resources/" />
  
 	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-  		<property name="templateLoaderPath" value="classpath:/com/serge/web/template"/>
+  		<property name="templateLoaderPath" value="classpath:/com/serge/cv/web/template"/>
 	</bean>
 	
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
