@@ -5,7 +5,7 @@ dojo.addOnLoad(function() {
         var targetNode = dojo.byId("content");
         //The parameters to pass to xhrGet, the url, how to handle it, and the callbacks.
         var xhrArgs = {
-            url: "/cv-web/users/toto/json",
+            url: "/cv-web/users/getUser?login=toto",
             handleAs: "json",
             preventCache: true,
             headers: { "Content-Type": "text/json"},
@@ -27,7 +27,7 @@ dojo.addOnLoad(function() {
                 default:
                     message = "Unknown error.";
                 }
-                targetNode.innerHTML = message;
+                targetNode.innerHTML = ioargs;
             }
         }
 
