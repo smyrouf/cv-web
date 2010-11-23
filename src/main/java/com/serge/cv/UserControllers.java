@@ -48,10 +48,10 @@ public class UserControllers {
 	}
 	
 	@RequestMapping(value="/{login}/json")
-	public @ResponseBody User  getJsonUser(@PathVariable(value="login") String login) {
+	public @ResponseBody Map<String,String>  getJsonUser(@PathVariable(value="login") String login) {
 		User user = this.userDao.findbyLogin(login);
 		logger.info("add user "+user);
-		return user;
+		return Collections.singletonMap("id", user.getLogin());
 	}
 	
 }

@@ -1,5 +1,4 @@
 body {
-  text-align: center;
   margin-top:10px;
   margin-bottom:10px;
   color:#666666;
@@ -40,6 +39,41 @@ A:hover {
   margin:0px;
 }
 
+#header_title {
+	float : left;
+}
+
+.login_field {
+	display : block;
+	margin-bottom: 5px;
+	height: 20px;
+	
+	
+}
+
+#sign_in_button {
+	float : left;
+}
+.login_text {
+	float : right;
+	width: 15em !important;
+}
+
+#account_login {
+	-moz-border-radius: 7px;
+	background-color : #FFFFF6;
+	border : 1px #0000FF solid;
+	padding : 5px;
+	color : black;
+	float : right;
+	margin-top: 10px;
+	font-size: 12px;
+	text-align: left;
+}
+.login_field label {
+	margin-right: 0.5em;
+	font-size: 1.2em;
+}
 #header h1 {
   margin:0px;
   font-family: verdana, arial, sans-serif;
@@ -59,13 +93,6 @@ A:hover {
 #left_side {
   margin-top: 10px;
   float: left;
-  width: 160px;
-  background: #F1F6FE url('../images/side_bg.gif') bottom left repeat-x;
-}
-
-#right_side {
-  margin-top: 10px;
-  float: right;
   width: 160px;
   background: #F1F6FE url('../images/side_bg.gif') bottom left repeat-x;
 }
@@ -233,4 +260,7 @@ A:hover {
   font-size: 11px;
   line-height: 18px;
   color: #333333;
+}
+.clear {
+	clear: both;
 }
