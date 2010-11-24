@@ -4,5 +4,20 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
 	
+ 	<!-- add core -->
+ 	<import resource="classpath:/META-INF/spring/core-context.xml"/>
+	<bean id="digestFilter"
+		class="org.springframework.security.web.authentication.www.DigestAuthenticationFilter">
+		<property name="userDetailsService" ref="jdbcDaoImpl" />
+		<property name="authenticationEntryPoint" ref="digestEntryPoint" />
+		<property name="userCache" ref="userCache" />
+	</bean>
+
+	<bean id="digestEntryPoint"
+		class="org.springframework.security.web.authentication.www.DigestAuthenticationEntryPoint">
+		<property name="realmName" value="Contacts Realm via Digest Authentication" />
+		<property name="key" value="acegi" />
+		<property name="nonceValiditySeconds" value="10" />
+	</bean>
 
 </beans>
