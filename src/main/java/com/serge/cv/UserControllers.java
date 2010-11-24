@@ -1,5 +1,7 @@
 package com.serge.cv;
 
+import java.util.Collections;
+import java.util.Map;
 import java.util.Set;
 
 import org.slf4j.Logger;
@@ -29,8 +31,7 @@ public class UserControllers {
 	@Autowired private UserDao userDao;
 	@Autowired private ResumeDao resumeDao;
 	
-	@RequestMapping(value="/add.do")
-	
+	@RequestMapping(value="/add",method=RequestMethod.POST)
 	public String addUser(@RequestParam(value="login", required=true) String login,
 						  @RequestParam(value="password", required=false) String password, ModelMap model) {
 		User user = this.userDao.persist(new User(login, password ));
@@ -38,6 +39,19 @@ public class UserControllers {
 		logger.info("add user "+user);
 		return "user";
 	}
+	
+	@RequestMapping(value="/del",method=RequestMethod.POST)
+	public @ResponseBody Map<String,String> delUser(@RequestParam(value="login", required=true) String login,
+			@RequestParam(value="password", required=false) String password) {
+		User user = this.userDao.findbyLogin(login);
+		if ( !user.getPassword().equals(password)) {
+			Collections.singletonMap("status", "ko");
+		}
+		this.userDao.delete(user);
+		logger.info("del user "+user);
+		return Collections.singletonMap("status", "ok");
+	}
+
 	
 //	@RequestMapping(value="/{login}")
 //	@Transactional(readOnly = true)
@@ -50,11 +64,17 @@ public class UserControllers {
 	
 
 
-	@RequestMapping(value="resumes")
 	@Transactional(readOnly = true)
-	public @ResponseBody Set<Resume>  getJsonUser(@PathVariable(value="login") String login) {
-		Set<Resume> resumes = this.resumeDao.findbyName(login);
-		return   resumes; 
+	@RequestMapping(value="/check",method=RequestMethod.POST)
+	public @ResponseBody Map<String,String> check(@RequestParam(value="login", required=true) String login,
+			@RequestParam(value="password", required=false) String password) {
+		User user = this.userDao.findbyLogin(login);
+		if (user == null || !user.getPassword().equals(password)) {
+			logger.info("check  user "+user+ " ko ");
+			Collections.singletonMap("status", "ko");
+		}
+		logger.info("check  user "+user+ " ok ");
+		return Collections.singletonMap("status", "ok");
 	}
 	
 }
