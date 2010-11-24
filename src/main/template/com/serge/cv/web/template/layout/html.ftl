@@ -35,7 +35,6 @@
 </div>
 </div>
 </div>
-</div>
 <div id="navcontainer">
 <ul id="navlist">
 <li id="active"><a href="<@spring.url "/"/>">Home</a></li>
