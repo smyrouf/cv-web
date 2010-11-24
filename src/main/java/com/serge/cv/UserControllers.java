@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,7 +20,7 @@ import com.serge.cv.dao.UserDao;
 
 
 @Controller
-@RequestMapping(value="/users", method=RequestMethod.GET)
+@RequestMapping(value="/users/{login}/", method=RequestMethod.GET)
 @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 public class UserControllers {
 
@@ -28,8 +28,7 @@ public class UserControllers {
 
 	@Autowired private UserDao userDao;
 	
-	@RequestMapping(value="/add.do")
-	
+	@RequestMapping(value="/add",method=RequestMethod.POST)
 	public String addUser(@RequestParam(value="login", required=true) String login,
 						  @RequestParam(value="password", required=false) String password, ModelMap model) {
 		User user = this.userDao.persist(new User(login, password ));
@@ -38,20 +37,29 @@ public class UserControllers {
 		return "user";
 	}
 	
-	@RequestMapping(value="/{login}")
-	@Transactional(readOnly = true)
-	public String getUser(@PathVariable(value="login") String login, ModelMap model) {
+	@RequestMapping(value="/del",method=RequestMethod.POST)
+	public @ResponseBody Map<String,String> delUser(@RequestParam(value="login", required=true) String login,
+			@RequestParam(value="password", required=false) String password) {
 		User user = this.userDao.findbyLogin(login);
-		model.put("user", user);
-		logger.info("add user "+user);
-		return "user";
+		if ( !user.getPassword().equals(password)) {
+			Collections.singletonMap("status", "ko");
+		}
+		this.userDao.delete(user);
+		logger.info("del user "+user);
+		return Collections.singletonMap("status", "ok");
 	}
-	
-	@RequestMapping(value="/{login}/json")
-	public @ResponseBody Map<String,String>  getJsonUser(@PathVariable(value="login") String login) {
+
+	@Transactional(readOnly = true)
+	@RequestMapping(value="/check",method=RequestMethod.POST)
+	public @ResponseBody Map<String,String> check(@RequestParam(value="login", required=true) String login,
+			@RequestParam(value="password", required=false) String password) {
 		User user = this.userDao.findbyLogin(login);
-		logger.info("add user "+user);
-		return Collections.singletonMap("id", user.getLogin());
+		if (user == null || !user.getPassword().equals(password)) {
+			logger.info("check  user "+user+ " ko ");
+			Collections.singletonMap("status", "ko");
+		}
+		logger.info("check  user "+user+ " ok ");
+		return Collections.singletonMap("status", "ok");
 	}
 	
 }
