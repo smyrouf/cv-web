@@ -53,6 +53,14 @@
 	  <property name="exposeSpringMacroHelpers" value="true"/>
 	</bean>
 	
+	<bean id="emailViewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+	  <property name="cache" value="true"/>
+	  <property name="prefix" value=""/>
+	  <property name="suffix" value=".ftl"/>
+	  <!-- if you want to use the Spring FreeMarker macros, set this property to true -->
+	  <property name="exposeSpringMacroHelpers" value="true"/>
+	</bean>
+	
 	<bean id="localeChangeInterceptor"
       	class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
     	<property name="paramName" value="language"/>
@@ -73,5 +81,34 @@
 	
 	<!-- Imports user-defined @Controller beans that process client requests -->
 	<import resource="controllers.xml" />
+	<import resource="classpath:/META-INF/spring/core-context.xml"/>
+	
+	<!-- bean that define the mail to send for activation -->
+	<bean id="mailActivationData" class="org.springframework.mail.SimpleMailMessage">
+        <property name="subject" value="Activez votre compte sur cv-dynamique" />
+        <property name="from" value="gdepenguern@gmail.com" />
+    </bean>
+
+	<bean id="gmailServer" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.gmail.com" />
+        <property name="port" value="587" />
+        <property name="javaMailProperties">
+	   <props>
+       	      <prop key="mail.smtp.auth">true</prop>
+       	      <prop key="mail.smtp.starttls.enable">true</prop>
+       	   </props>
+	</property>
+        <property name="username" value="myroufs@gmail.com" />
+        <property name="password" value="pikachou" />
+        <property name="defaultEncoding" value="UTF-8" />
+    </bean>
+	
+	<!-- bean that define the mail to send for activation -->
+	<bean id="mailActivation" class="com.serge.cv.email.ActivationEmail">
+        <property name="activationTemplate" value="activation" />
+    </bean>
+	
+	<!-- bean that define the mail to send for activation -->
+	
 	
 </beans>

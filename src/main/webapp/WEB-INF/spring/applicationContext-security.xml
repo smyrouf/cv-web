@@ -1,29 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/security"
-	    xmlns:beans="http://www.springframework.org/schema/beans"
-	    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	    xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-	      http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
-	<http>
+  xmlns:beans="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/security
+           http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+   	<http>
 	        <intercept-url pattern="/secure/extreme/**" access="ROLE_SUPERVISOR" />
 	        <intercept-url pattern="/secure/**" access="IS_AUTHENTICATED_FULLY" />
-	        <intercept-url pattern="/login.htm" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-	        <intercept-url pattern="/images/*" filters="none" />
+	        <intercept-url pattern="/" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+	        <intercept-url pattern="/register/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+	        <intercept-url pattern="/resources/css/**" filters="none" />
+	        <intercept-url pattern="/resources/images/**" filters="none" />
+	        <intercept-url pattern="/resources/js/**" filters="none" />
 	        <intercept-url pattern="/**" access="ROLE_USER" />
-	        <form-login login-page="/login.htm" default-target-url="/home.htm" />
-	        <logout logout-success-url="/logged_out.htm" />
+	        <form-login login-page="/" default-target-url="/login.ftl" />
+	        <logout logout-success-url="/index.ftl" />
 	</http>
-   <authentication-manager>
-		<authentication-provider>
-			<password-encoder hash="sha" />
-			<user-service>
-				<user name="jimi" password="d7e6351eaa13189a5a3641bab846c8e8c69ba39f"
-					authorities="ROLE_USER, ROLE_ADMIN" />
-				<user name="bob" password="4e7421b1b8765d8f9406d87e7cc6aa784c4ab97f"
-					authorities="ROLE_USER" />
-			</user-service>
-		</authentication-provider>
-	</authentication-manager>
 
-	
+	<authentication-manager>
+    	<authentication-provider ref="authenticationProvider" />
+  	</authentication-manager>
+	<beans:bean id="authenticationProvider"  class="org.springframework.security.authentication.ProviderManager">
+ 		 <beans:property name="providers">
+    		<beans:list>
+      			<beans:ref local="daoAuthenticationProvider"/>
+    		</beans:list>
+  		</beans:property>
+	</beans:bean>
+	<beans:bean id="daoAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+  		<beans:property name="userDetailsService" ref="inMemoryDaoImpl"/>
+  		<beans:property name="saltSource" ref="prout"/>
+  		<beans:property name="passwordEncoder" ref="passwordEncoder"/>
+	</beans:bean>
+		
+  	<beans:bean id="userDetailsService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
+  		<beans:property name="dataSource" ref="dataSource"/>
+	</beans:bean>  
+	<beans:bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
 </beans:beans>
