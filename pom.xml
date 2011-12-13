@@ -100,7 +100,7 @@
 		<dependency>
 			<groupId>cv</groupId>
 			<artifactId>cv-core</artifactId>
-			<version>1.0.0.CI-SNAPSHOT</version>
+			<version>1.0.1.CI-SNAPSHOT</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>

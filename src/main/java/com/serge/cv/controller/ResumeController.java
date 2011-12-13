@@ -1,4 +1,4 @@
-package com.serge.cv;
+package com.serge.cv.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping(value="/users/{login}/resume/{resume}", method=RequestMethod.GET)
 @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-public class ResumeControlleur {
+public class ResumeController {
 
 	
 	

@@ -67,6 +67,9 @@
 	</bean>
 	
 	<mvc:view-controller path="/" view-name="index"/>
+	
+	<mvc:view-controller path="/register/**" />
+	
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**/*.do"/>
@@ -105,7 +108,7 @@
 	
 	<!-- bean that define the mail to send for activation -->
 	<bean id="mailActivation" class="com.serge.cv.email.ActivationEmail">
-        <property name="activationTemplate" value="activation" />
+        <property name="activationTemplate" value="mail/activation" />
     </bean>
 	
 	<!-- bean that define the mail to send for activation -->

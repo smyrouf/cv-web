@@ -1,4 +1,4 @@
-#Fri Dec 09 17:30:06 CET 2011
+#Sat Dec 10 15:28:13 CET 2011
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
 >>>>>>>=812633d8eb93dc7f2da63f734af80a563d636ec1
@@ -6,7 +6,7 @@ activeProfiles=
 eclipse.preferences.version=1
 fullBuildGoals=process-test-resources
 includeModules=false
-resolveWorkspaceProjects=true
+resolveWorkspaceProjects=false
 resourceFilterGoals=process-resources resources\:testResources
 skipCompilerPlugin=true
 version=1

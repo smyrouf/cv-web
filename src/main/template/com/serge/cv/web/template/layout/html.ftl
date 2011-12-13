@@ -26,15 +26,16 @@ var root_url = "<@spring.url ""/>";
 <body class="claro" >
 <div id="header">
 <div id="header_title"></div>
-<div id="loginForm">
+<form id="authentification" class="loginForm" action="j_spring_security_check" method="POST" >
 			<p> Deja menbre ?</p>
-	        <input class="login_field" id="login" type="text" size="15"  name="login" placeHolder="login...."  />
-	        <input class="login_field" id="password" type="text"  size="15"  name="password" type="password" placeHolder="mot de passe...." /> 
-	        <div id="login_submit"> ok</div>
-</div>
+	        <input class="login_field" id="login" type="text" size="15"  name="j_username" placeHolder="login...."  />
+	        <input class="login_field" id="password"  type="password" size="15"  name="j_password" placeHolder="mot de passe...." /> 
+	        <div id="login_submit" ><a href="" id="ok_submit" > ok </a></div>
+</form>
+<div class="loginForm"  id="loginWelcome" > </div>
 <div class="clear"></div>
 <div id="header_menu">
- <div class="sub_menu" ><a href="/login">s'inscrire </a></div>
+ <div class="sub_menu" ><a href="<@spring.url "/register/login"/>">s'inscrire </a></div>
  <div class="sub_menu" id="login" ><a href="#">exemples</a></div>
 </div>
 

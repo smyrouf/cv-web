@@ -9,7 +9,7 @@
 <h2>Vous voulez vous inscrire ?</h2>
 <p> Vous pouvez devenir menbre  <strong>gratuitement</strong> de CV dynamique et ainsi creer votre  <strong> CV web, interactif, dynamique </strong> et booster votre profil.
  Pour cela rien de bien complique il suffit de remplir le formulaire ci-dessus. </p>
- <form dojoType="dijit.form.Form" id="FormSignIn" method="GET" action="<@spring.url "/users/add" />" >
+ <form dojoType="dijit.form.Form" id="FormSignIn" method="GET" action="<@spring.url "/users/init" />" >
  
   <fieldset>
     <legend>Creation du compte </legend>
@@ -24,7 +24,6 @@
    		<label for="courriel"> courriel   : </label>  <input type="text" size="50" name="courriel" regExp="\b[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\b" trim="true"  placeholder="Veuillez indiquer une adresse email" required="true"  dojoType="dijit.form.ValidationTextBox" class="login_input" />
    </li>
     <li>
-			<button  id="reset" type="button" />
 		 	<button  id="submit" type="button" />
  	</li>
   </fieldset>
