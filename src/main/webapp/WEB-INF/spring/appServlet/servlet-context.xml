@@ -40,6 +40,9 @@
 				<entry key="html_escape">
 					<bean id="fmHtmlEscape" class="freemarker.template.utility.HtmlEscape" />
 				</entry>
+				<entry key="getLogin">
+					<bean  id="getLogin" class="com.serge.cv.service.freemarker.GetLogin" />
+				</entry> 
 			</map>
 		</property>
 	</bean>

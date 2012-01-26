@@ -21,15 +21,15 @@ a {
 	background :  top left url('../images/shadow_blue.png') repeat-x ;
 	height: 27px; 
 	margin: 0;
-	padding-left: 250px;
+	padding-left: 270px;
 	
 }
 #header_menu .sub_menu {
 	 background :  top left url('../images/button.png') no-repeat ;
 	 float : left;
-	 height: 90px;
+	 height: 70px;
 	 width : 90px;
-	 margin: -30px 10px 0px 0px;
+	 margin: -30px 20px 0px 10px;
 	 padding: 35px 0 0 2px;
 	 
 }
@@ -64,8 +64,27 @@ a {
 }
 .loginForm {
 	margin-top : 35px;
-	margin-left : 70px;
+	margin-left : 150px;
 	float: left;
+	
+}
+
+#loginWelcome {
+	margin-top : 35px;
+	margin-left : 200px;
+	float: left;
+	font-size: 1.1em;
+	border: 2px solid black;
+	border-radius: 7px;
+	padding : 0.7em ;
+	background-color: #CCCCCC;
+}
+#logout {
+	text-decoration:underline;
+}
+
+a#ok_logout:HOVER, #logout:HOVER {
+	color :white;
 }
 
 .loginForm #login {
@@ -91,7 +110,6 @@ a {
 	height : 22px;
 	display:  : block;
 	float : left;
-
 	border: 2px bold;
 	background-color: #70999E;
 	padding-left: 4px;
@@ -101,9 +119,6 @@ a {
 	color : white;
 }
 
-#loginWelcome.loginForm {
-	display: none;
-}
 
 .loginForm p {
 	margin  : 0px;
@@ -136,4 +151,17 @@ a {
 
 .clear {
 	clear: both;
+}
+
+#loader {
+    background: none repeat scroll 0 0 #EDEDED;
+    height: 100%;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    vertical-align: middle;
+    width: 100%;
+    z-index: 999;
 }

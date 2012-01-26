@@ -1,0 +1,51 @@
+#FormSignIn {
+	width: 22em;
+	border:10px;
+	display: inline-block;
+  	vertical-align: top;
+  	font-size: 1.2em;
+}
+#text_login {
+	padding-left: 100px;
+}
+
+p  {
+	line-height: 1.24em;
+	width: 50em;
+}
+
+
+#FormSignIn fieldset {
+	height : 13em;
+	border-radius: 5px;	
+	-moz-border-radius: 5px;	
+}
+
+#FormSignIn .dijitPlaceHolder {
+	font-size: 0.8em;
+	}
+
+#FormSignIn fieldset ol {
+  margin: 0;
+  padding: 0;
+}
+#FormSignIn fieldset ol li {
+list-style: none;
+  margin: 10px 0;
+}
+
+#FormSignIn .login_input {
+	float: right;
+	display : block;
+	border-radius: 5px ;
+}
+
+
+#FormSignIn label {
+	font-size: 0.8em;
+}
+
+ #FormSignIn li:last-child {
+ 	float : right;
+	margin-top: 1em;
+}

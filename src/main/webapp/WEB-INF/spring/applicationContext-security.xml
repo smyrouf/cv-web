@@ -17,7 +17,7 @@
 	        <intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 	        <intercept-url pattern="/user/**" access="ROLE_USER" />
 	        <form-login authentication-failure-url="/user/failure" login-processing-url="/j_spring_security_check" default-target-url="/user/welcome" />
-	        <logout logout-success-url="/user/logout" />
+	        <logout  logout-success-url="/user/logout" />
 	</http>
 
 	<authentication-manager>
